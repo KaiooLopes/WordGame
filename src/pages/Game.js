@@ -16,10 +16,6 @@ const Game = () => {
   const [ letter, setLetter ] = useState("");
   const [ score, setScore ] = useState(0);
   const letterInputRef = useRef(null);
-  console.log(letters)
-  if(word){
-    console.log(letters)
-  }
 
   const startGame = () => {
     setWrongLetters([]);
