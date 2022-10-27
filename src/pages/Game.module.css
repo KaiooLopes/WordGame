@@ -46,3 +46,11 @@
     color: black;
     font-weight: bold;
 }
+
+.attention{
+    color: rgb(177, 31, 31);
+}
+
+.wrongLettersContainer{
+    font-weight: bold;
+}

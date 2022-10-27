@@ -10,20 +10,22 @@ body{
     color: #fff;
 }
 
-button{
-    background-color: rgba(0, 51, 255, 0.302);
-    color: white;
-    padding: 0 45px;
-    border: white solid 2px;
-    border-radius: 25px;
-    height: 50px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1.2em;
+.btn{
+    background-color: #0d1097;
+    text-decoration: none;
+    color: #FFF;
+    text-align: center;
     cursor: pointer;
+    border-radius: 25px;
+    border: 2px solid #fff;
+    width: 120px;
+    font-weight: bold;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    text-transform: uppercase;
     transition: .4s;
 }
 
-button:hover{
+.btn:hover{
     background-color:rgba(0, 51, 255, 0.5);
 }
