@@ -6,7 +6,6 @@ import { Link, useLocation } from "react-router-dom"
 const EndGame = () => {
 
   const location = useLocation();
-  console.log(location)
   const score = location.state.score;
   const word = location.state.word;
 
