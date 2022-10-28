@@ -1,8 +1,9 @@
 import styles from "./Game.module.css";
 import { useState, useRef, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useFetchDocument } from "../hooks/useFetchDocument";
+import Footer from "../components/Footer";
 
 const Game = () => {
   const navigate = useNavigate();
@@ -23,11 +24,10 @@ const Game = () => {
     setLetters([]);
   }
   
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    verifyLetter(letter);
+    
+    verifyLetter(letter.toLowerCase());
 
     setLetter("");
     letterInputRef.current.focus();
@@ -72,7 +72,7 @@ const Game = () => {
   useEffect(() => {
     const uniqueLetters = [...new Set(letters)]
     if(guessedLetters.length === uniqueLetters.length && guessedLetters.length !== 0 && uniqueLetters.length !== 0){
-      setScore((actualScore) => actualScore + 100);
+      setScore((actualScore) => actualScore + (letters.length * 10));
       setData(Date.now())
       startGame();
     }
@@ -81,7 +81,8 @@ const Game = () => {
 
   return (
     <div className={styles.game}>
-      {word && loading && <h2>Carregando...</h2>}
+      <Link to="/" className={styles.logo}>Wordlol</Link>
+      {loading && <h2>Carregando...</h2>}
       {error && <h2>Erro, tente reiniciar a pagina</h2> }
       {!loading && word && (
       <>
@@ -90,9 +91,7 @@ const Game = () => {
           <span>Pontuação: {score}</span>
         </p>
         <h2>Adivinhe o campeão</h2>
-        <h3 className={styles.tip}>
-          Dica sobre o campeão ={">"} <span>{`Função: ${word.occupation} / Rota(s): ${word.role}`}</span>
-        </h3>
+        <p className={styles.tip}>Função: <span>{word.occupation}</span> Rota(s): <span>{word.role.join(",")}</span></p>
         <p>Você ainda tem <span>{guesses}</span> tentativas</p>
         <div className={styles.wordContainer}>
           {word && !loading && letters.map((letter, i) => (

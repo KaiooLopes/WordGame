@@ -2,3 +2,27 @@ h2 span {
     color: #ecfa00;
     font-size: 1.5em;
 }
+
+.logo{
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: 4px 4px 4px rgb(102, 100, 12);
+    color: yellow;
+}
+
+.end h2{
+    color: rgb(238, 48, 48);
+    text-transform: uppercase;
+}
+
+.champ span{
+    color: rgb(0, 183, 255);
+}
+
+.score span{
+    color: rgb(179, 226, 7);
+}
+
+.score, .champ{
+    margin-bottom: 30px;
+}

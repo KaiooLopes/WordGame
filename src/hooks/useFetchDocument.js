@@ -35,7 +35,7 @@ export const useFetchDocument = (docCollection, data) => {
                 }));
 
                 let randomNumber = parseInt(Math.random() * arrDocs.length)
-                
+
                 setDocuments(arrDocs[randomNumber]);
 
                 setLoading(false);

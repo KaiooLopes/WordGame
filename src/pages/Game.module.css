@@ -1,19 +1,29 @@
+.game{
+    align-items:none;
+}
+
 .game h1{
     font-size: 2.5em;
 }
 
 .points span {
     font-weight: bold;
+    color: rgb(0, 183, 255);
 }
 
 .tip span{
     color: #ecfa00;
 }
 
+.tip{
+    color: rgb(51, 255, 51);
+    margin-bottom: 2px;
+}
+
 .wordContainer{
     margin:1.5em;
     padding: 1.5em;
-    border: 20px solid #ecfa00;
+    border: 20px solid #6ca80b;
     display: flex;
 }
 
@@ -48,9 +58,17 @@
 }
 
 .attention{
-    color: rgb(177, 31, 31);
+    color: rgb(255, 0, 0);
 }
 
 .wrongLettersContainer{
     font-weight: bold;
+}
+
+.logo{
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: 4px 4px 4px rgb(102, 100, 12);
+    color: yellow;
+    text-decoration: none;
 }
