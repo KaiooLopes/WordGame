@@ -65,7 +65,7 @@ const Game = () => {
         }
       })
     }
-  }, [guesses, navigate, score]);
+  }, [guesses, navigate, score, word?.name]);
 
   useEffect(() => {
     const uniqueLetters = [...new Set(letters)]
