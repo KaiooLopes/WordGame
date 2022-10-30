@@ -12,11 +12,10 @@ export const useFetchDocument = (docCollection, data) => {
     const [ cancelled, setCancelled ] = useState(false);
     
     useEffect(() => {
-        if(data){
-            setCancelled(false)
-        }
-
         async function loadData(){
+            if(data){
+                setCancelled(false)
+            }
             if(cancelled) return;
 
             setLoading(true)

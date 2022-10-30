@@ -3,13 +3,11 @@ import { useState, useRef, useEffect } from "react";
 
 import { useNavigate, Link } from "react-router-dom";
 import { useFetchDocument } from "../hooks/useFetchDocument";
-import Footer from "../components/Footer";
 
 const Game = () => {
   const navigate = useNavigate();
   const [ data, setData ] = useState(null);
   const {documents: word, loading, error} = useFetchDocument("champions", data);
-
   const [ guesses, setGuesses ] = useState(3);
   const [ letters, setLetters ] = useState([]);
   const [ wrongLetters, setWrongLetters ] = useState([]);
@@ -67,7 +65,7 @@ const Game = () => {
         }
       })
     }
-  }, [guesses]);
+  }, [guesses, navigate, score]);
 
   useEffect(() => {
     const uniqueLetters = [...new Set(letters)]
