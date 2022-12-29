@@ -1,57 +1,55 @@
 import { useState, useEffect } from "react";
-import { db } from "../firebase/config"
-import { collection, query,  getDocs} from "firebase/firestore";
+import { db } from "../firebase/config";
+import { collection, query, getDocs } from "firebase/firestore";
 
 export const useFetchDocument = (docCollection, data) => {
+  const [documents, setDocuments] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
 
-    const [ documents, setDocuments ] = useState(null);
-    const [ error, setError ] = useState(null)
-    const [ loading, setLoading ] = useState(null)
+  //deal with memory leak
+  const [cancelled, setCancelled] = useState(false);
 
-    //deal with memory leak
-    const [ cancelled, setCancelled ] = useState(false);
-    
-    useEffect(() => {
-        async function loadData(){
-            if(data){
-                setCancelled(false)
-            }
-            if(cancelled) return;
+  useEffect(() => {
+    async function loadData() {
+      if (data) {
+        setCancelled(false);
+      }
+      if (cancelled) return;
+      console.log("oi");
 
-            setLoading(true)
+      setLoading(true);
 
-            const collectionRef = await collection(db, docCollection)
-            
-            try {
+      const collectionRef = await collection(db, docCollection);
 
-                const q = query(collectionRef)
+      try {
+        const q = query(collectionRef);
 
-                const querySnapshot = await getDocs(q);
-                
-                const arrDocs = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
+        const querySnapshot = await getDocs(q);
 
-                let randomNumber = parseInt(Math.random() * arrDocs.length)
+        const arrDocs = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-                setDocuments(arrDocs[randomNumber]);
+        let randomNumber = parseInt(Math.random() * arrDocs.length);
 
-                setLoading(false);
-                
-            } catch (error) {
-                setError(error);
-                console.log(error.message);
-                setLoading(false);
-            }
-        }
-        
-        loadData();
-    }, [docCollection, data ,cancelled]);
+        setDocuments(arrDocs[randomNumber]);
 
-    useEffect(() => {
-        return () => setCancelled(true)
-    }, []);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        console.log(error.message);
+        setLoading(false);
+      }
+    }
 
-    return {documents, loading, error}
-}
+    loadData();
+  }, [docCollection, data, cancelled]);
+
+  useEffect(() => {
+    return () => setCancelled(true);
+  }, []);
+
+  return { documents, loading, error };
+};
